@@ -3,14 +3,19 @@ using System.Collections.Generic;
 
 namespace ObservableViewModel
 {
-    public class Invoker : IInvoker
+    public class ViewModelManager : IViewModelManager
     {
         private readonly List<object> viewModels;
         private int finishedViewModels;
 
         private IReceptor Receptor { get; }
 
-        public Invoker(IReceptor receptor)
+        public ViewModelManager()
+        {
+            viewModels = new List<object>();
+        }
+
+        public ViewModelManager(IReceptor receptor)
         {
             Receptor = receptor;
             viewModels = new List<object>();

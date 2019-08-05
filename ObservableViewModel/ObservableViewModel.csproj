@@ -52,8 +52,8 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseViewModel.cs" />
-    <Compile Include="IInvoker.cs" />
-    <Compile Include="Invoker.cs" />
+    <Compile Include="IViewModelManager.cs" />
+    <Compile Include="ViewModelManager.cs" />
     <Compile Include="IReceptor.cs" />
     <Compile Include="StatusObserver.cs" />
   </ItemGroup>

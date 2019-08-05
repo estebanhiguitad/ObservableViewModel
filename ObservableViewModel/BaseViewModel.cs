@@ -18,7 +18,7 @@ namespace ObservableViewModel
 
         private Thread thread;
 
-        public BaseViewModel()
+        protected BaseViewModel()
         {
             Status = StatusObserver.InProgress;
         }

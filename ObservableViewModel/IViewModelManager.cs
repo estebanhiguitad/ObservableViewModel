@@ -2,7 +2,7 @@
 
 namespace ObservableViewModel
 {
-    public interface IInvoker
+    public interface IViewModelManager
     {
         void AddViewModel<T>(BaseViewModel<T> viewModel, Action<T> OnNextAction, Action<Exception> OnErrorAction);
         void AddViewModel<T>(BaseViewModel<T> viewModel, Action<T> OnNextAction, Action<Exception> OnErrorAction, Action OnCompleteAction);
