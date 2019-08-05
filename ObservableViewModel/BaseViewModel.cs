@@ -51,19 +51,29 @@ namespace ObservableViewModel
 
         protected abstract T LoadInBackground();
 
+        protected abstract void ProcesssResponse(T response, IObserver<T> observer);
+
         private Func<IObserver<T>, IDisposable> FunctionToExecute()
         {
             return observer =>
             {
-                thread = Thread.CurrentThread;
                 var cancel = new CancellationDisposable();
 
-                T response = LoadInBackground();
+                try
+                {
+                    thread = Thread.CurrentThread;
 
-                observer.OnNext(response);
-                observer.OnCompleted();
+                    T response = LoadInBackground();
+
+                    ProcesssResponse(response, observer);
+                }
+                catch (Exception ex)
+                {
+                    observer.OnError(ex);
+                }
 
                 return cancel;
+
             };
         }
     }
