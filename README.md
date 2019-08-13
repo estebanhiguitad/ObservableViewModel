@@ -65,4 +65,19 @@ exampleViewModel.InitObserver();
 
 ```
 
+These are examples methods to OnNext and OnError callbacks
+
+```
+
+private void ExampleSuccess(MyResponseType response)
+{
+    // Handle response here
+}
+
+private void ExampleError(Exception exception)
+{
+    // Handle exception here 
+}
+
+```
 
