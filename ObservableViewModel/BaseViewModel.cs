@@ -51,7 +51,7 @@ namespace ObservableViewModel
 
         protected abstract T LoadInBackground();
 
-        protected abstract void ProcesssResponse(T response, IObserver<T> observer);
+        protected abstract void ProcessResponse(T response, IObserver<T> observer);
 
         private Func<IObserver<T>, IDisposable> FunctionToExecute()
         {
@@ -65,7 +65,7 @@ namespace ObservableViewModel
 
                     T response = LoadInBackground();
 
-                    ProcesssResponse(response, observer);
+                    ProcessResponse(response, observer);
                 }
                 catch (Exception ex)
                 {
