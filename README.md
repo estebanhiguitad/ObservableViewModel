@@ -1,18 +1,18 @@
 # ObservableViewModel
 It allows the creation of background tasks with ViewModel in Xamarin Android.
 
-In this section we provide you an example to implement this library in your xamarin android project. Before to do it, you can review an example from [xamarin ViewModel repository](https://developer.xamarin.com/samples/monodroid/android-support/ViewModel/). To better understanding about how to ViewModels work, go to [android documentation](https://developer.android.com/topic/libraries/architecture/viewmodel). You need to know that this library not use LiveData, in other hand, we use observables to handle threads and ViewModel to attach it to lifecycle activity or fragment.
+In this section we provide you an example to implement this library in your xamarin android project. Before you do it, you can review an example from [xamarin ViewModel repository](https://developer.xamarin.com/samples/monodroid/android-support/ViewModel/). For better understanding how ViewModels work, go to [android documentation](https://developer.android.com/topic/libraries/architecture/viewmodel). You need to know that this library doesn't use LiveData, in other hand, we use observables to handle threads and ViewModel to attach it to lifecycle activity or fragment.
 
  ## Get Started
 
-Import the nuget package in your proyect.
+Import the nuget package in your project.
 
 https://www.nuget.org/packages/cloud.ludus/
 
 
 ### Config your ViewModel
 
-After it, you need to create a ViewModel that extends from [BaseViewModel](ObservableViewModel/BaseViewModel.cs) as show below. Here you need to override two methods. **LoadInBackground** to process the task in this thread and **ProcesssResponse** for incoming messages. 
+After it, you need to create a ViewModel that extends from [BaseViewModel](ObservableViewModel/BaseViewModel.cs) as shown below. Here you need to override two methods. **LoadInBackground** to process the task in this thread and **ProcesssResponse** for incoming messages. 
 
 ```
 
@@ -25,11 +25,11 @@ public class ExampleViewModel : BaseViewModel<MyResponseType>
         return new MyResponseType();
     }
 
-    protected override void ProcesssResponse(MyResponseType response, IObserver<MyResponseType> observer)
+    protected override void ProcessResponse(MyResponseType response, IObserver<MyResponseType> observer)
     {
         /*
          * Here you have an observer object, then you can define when call to
-         * OnError or OnNext callbacks to finalize successfully. We recommend allways to call
+         * OnError or OnNext callbacks to finalize successfully. We recommend to allways call
          * OnComplete callback to process common actions.
          */
     
@@ -50,7 +50,7 @@ public class ExampleViewModel : BaseViewModel<MyResponseType>
 
 ### Config on your activity
 
-Now, initialize the viewModelManager to add the viewModel and actions to OnNext and OnError callbacks or optionally to OnComplete callback as show below
+Now, initialize the viewModelManager to add the viewModel and actions to OnNext and OnError callbacks or optionally to OnComplete callback as shown below
 
 ```
 
