@@ -25,7 +25,7 @@ public class ExampleViewModel : BaseViewModel<MyResponseType>
         return new MyResponseType();
     }
 
-    protected override void ProcesssResponse(MyResponseType response, IObserver<MyResponseType> observer)
+    protected override void ProcessResponse(MyResponseType response, IObserver<MyResponseType> observer)
     {
         /*
          * Here you have an observer object, then you can define when call to
