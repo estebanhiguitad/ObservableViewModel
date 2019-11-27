@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservableViewModel", "ObservableViewModel\ObservableViewModel.csproj", "{26F80F38-6924-4A9D-94FC-E6CDC4D586FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTest", "AppTest\AppTest.csproj", "{66AB91BD-E87E-460F-AEA7-CA041C80CEFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{26F80F38-6924-4A9D-94FC-E6CDC4D586FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26F80F38-6924-4A9D-94FC-E6CDC4D586FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26F80F38-6924-4A9D-94FC-E6CDC4D586FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66AB91BD-E87E-460F-AEA7-CA041C80CEFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66AB91BD-E87E-460F-AEA7-CA041C80CEFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66AB91BD-E87E-460F-AEA7-CA041C80CEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66AB91BD-E87E-460F-AEA7-CA041C80CEFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

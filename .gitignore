@@ -67,3 +67,5 @@ fastlane/readme.md
 .vs/
 ObservableViewModel/bin
 ObservableViewModel/obj
+AppTest/bin
+AppTest/obj
