@@ -8,9 +8,14 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="48dp"
         android:textColor="@android:color/black"
-        android:text="segunda actividad"
+        android:text="Presione el botón para abrir otra actividad desde un fragmento"
         tools:text="@tools:sample/full_names"/>
+
+    <FrameLayout
+        android:id="@+id/fragment_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"/>
 
 </LinearLayout>

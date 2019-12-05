@@ -5,13 +5,13 @@ using ObservableViewModel;
 
 namespace AppTest
 {
-    internal class TimeViewModel : BaseViewModel<string>
+    public class TimeViewModelTwo : BaseViewModel<string>
     {
         protected override string LoadInBackground()
         {
             for (int i = 0; i < 1000; i++)
             {
-                Debug.WriteLine($"Loop at: {i}");
+                Debug.WriteLine($"Loop at two: {i}");
                 Log.Debug(GetType().Name, $"Loop at: {i}");
             }
 

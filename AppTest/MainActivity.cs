@@ -1,22 +1,19 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Runtime;
 using ObservableViewModel;
 using System;
 using Android.Arch.Lifecycle;
 using Android.Util;
 using Android.Content;
-using Android.Views;
 using Android.Widget;
 
 namespace AppTest
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    public class MainActivity : BaseActivity
     {
         private Button myButton;
-        private ViewModelManager viewModelManager;
         private TimeViewModel timeViewModel;
         private readonly string tag;
 
@@ -35,10 +32,8 @@ namespace AppTest
             myButton = FindViewById<Button>(Resource.Id.myButton);
             myButton.Click += MyButton_Click;
 
-            viewModelManager = new ViewModelManager();
-
             timeViewModel = ViewModelProviders.Of(this).Get(Java.Lang.Class.FromType(typeof(TimeViewModel))) as TimeViewModel;
-            viewModelManager.AddViewModel(timeViewModel, OnSuccessTime, OnErrorTime);
+            ViewModelManager.AddViewModel(timeViewModel, OnSuccessTime, OnErrorTime);
         }
 
         private void MyButton_Click(object sender, EventArgs e)
@@ -50,6 +45,7 @@ namespace AppTest
         {
             Intent intent = new Intent(this, typeof(SecondActivity));
             StartActivity(intent);
+            Finish();
         }
 
         private void OnErrorTime(Exception obj)
