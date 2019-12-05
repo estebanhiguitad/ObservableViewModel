@@ -58,6 +58,9 @@
     <Compile Include="ViewModelManager.cs" />
     <Compile Include="IReceptor.cs" />
     <Compile Include="StatusObserver.cs" />
+    <Compile Include="ActivityState.cs" />
+    <Compile Include="IActivityLifecycle.cs" />
+    <Compile Include="IOnResumeObserver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -2,8 +2,9 @@
 {
     public enum StatusObserver
     {
-        InProgress,
+        Created,
         Ready,
-        Failed
+        Failed,
+        Completed
     }
 }

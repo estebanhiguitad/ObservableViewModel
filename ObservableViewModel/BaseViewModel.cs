@@ -7,21 +7,21 @@ using Android.App;
 
 namespace ObservableViewModel
 {
-    public abstract class BaseViewModel<T> : Android.Arch.Lifecycle.ViewModel, IObserver<T>
+    public abstract class BaseViewModel<T> : Android.Arch.Lifecycle.ViewModel,
+        IObserver<T>, IOnResumeObserver
     {
         public Action<T> OnNextAction;
         public Action<Exception> OnErrorAction;
         public Action OnCompleteAction;
 
+        private ActivityState activityState;
+
         public StatusObserver Status { get; private set; }
         private IObservable<T> observable;
 
         private Thread thread;
-
-        protected BaseViewModel()
-        {
-            Status = StatusObserver.InProgress;
-        }
+        private T response;
+        private IObserver<T> observer;
 
         public virtual void InitObserver()
         {
@@ -58,14 +58,16 @@ namespace ObservableViewModel
             return observer =>
             {
                 var cancel = new CancellationDisposable();
+                this.observer = observer;
 
                 try
                 {
                     thread = Thread.CurrentThread;
 
-                    T response = LoadInBackground();
+                    response = LoadInBackground();
 
-                    ProcessResponse(response, observer);
+                    Status = StatusObserver.Completed;
+                    ValidateResponse(activityState);
                 }
                 catch (Exception ex)
                 {
@@ -75,6 +77,20 @@ namespace ObservableViewModel
                 return cancel;
 
             };
+        }
+
+        public void OnActivityResumed(ActivityState state)
+        {
+            activityState = state;
+            ValidateResponse(state);
+        }
+
+        private void ValidateResponse(ActivityState state)
+        {
+            if (state == ActivityState.OnResume && Status == StatusObserver.Completed)
+            {
+                ProcessResponse(response, observer);
+            }
         }
     }
 }
