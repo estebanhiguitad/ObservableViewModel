@@ -22,6 +22,7 @@ namespace ObservableViewModel
         private Thread thread;
         private T response;
         private IObserver<T> observer;
+        private bool responseOnResume;
 
         public virtual void InitObserver()
         {
@@ -67,7 +68,7 @@ namespace ObservableViewModel
                     response = LoadInBackground();
 
                     Status = StatusObserver.Completed;
-                    ValidateResponse(activityState);
+                    ValidateResponse();
                 }
                 catch (Exception ex)
                 {
@@ -82,15 +83,27 @@ namespace ObservableViewModel
         public void OnActivityResumed(ActivityState state)
         {
             activityState = state;
-            ValidateResponse(state);
+            ValidateResponse();
         }
 
-        private void ValidateResponse(ActivityState state)
+        private void ValidateResponse()
         {
-            if (state == ActivityState.OnResume && Status == StatusObserver.Completed)
+            if (responseOnResume || (activityState == ActivityState.OnResume && Status == StatusObserver.Completed))
             {
-                ProcessResponse(response, observer);
+                try
+                {
+                    ProcessResponse(response, observer);
+                }
+                catch (Exception ex)
+                {
+                    observer.OnError(ex);
+                }
             }
+        }
+
+        public void CanResponseOutOfResume(bool responseOnResume)
+        {
+            this.responseOnResume = responseOnResume;
         }
     }
 }

@@ -9,16 +9,18 @@ namespace ObservableViewModel
     {
         private readonly List<object> viewModels;
         private int finishedViewModels;
-        private IActivityLifecycle lifecycle;
         private ActivityState activityState;
 
         private IReceptor Receptor { get; }
 
-        public ViewModelManager(IActivityLifecycle lifecycle)
+        public ViewModelManager()
         {
-            this.lifecycle = lifecycle;
-            lifecycle.RegisterLifecycleCallback(this);
             viewModels = new List<object>();
+        }
+
+        public ViewModelManager(IActivityLifecycle lifecycle) : this()
+        {
+            lifecycle.RegisterLifecycleCallback(this);
         }
 
         public ViewModelManager(IActivityLifecycle lifecycle, IReceptor receptor) : this(lifecycle)
